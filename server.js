@@ -2,7 +2,7 @@ const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const consoleTable = require("console.table");
 
-// connect to the database
+//connect to the database
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -17,7 +17,7 @@ db.connect(function (err) {
 
 })
 
-// prompt for user input
+// navigation
 function startNav() {
     inquirer
         .prompt({
@@ -37,50 +37,105 @@ function startNav() {
         }).then(answers => {
             switch ('Answer: ', answers.nav) {
                 case 'View all departments':
-                    viewDepartments();
+                    seeDepart();
                     break;
                 case 'View all roles':
-                    viewRoles();
+                    seeRoles();
                     break;
                 case 'View all employees':
-                    viewEmployees();
+                    seeEm();
                     break;
                 case 'Add a department':
-                    addDepartment();
+                    addDepart();
                     break;
                 case 'Add a role':
                     addRole();
                     break;
                 case 'Add an employee':
-                    addEmployee();
+                    addEm();
                     break;
                 case 'Update an employee role':
-                    updateEmployeeRole();
+                    updateEmRole();
                     break;
                 case 'Exit':
-                    exitTrack();
+                    quit();
                     break;
             }
         })
 };
 
-// view all departments in db
-function viewDepartments() {
+//view departments
+function seeDepart() {
     db.query("SELECT * FROM department",
         function (err, res) {
             if (err) throw err;
-            console.table('Departments: ', res);
+            console.table('Golden Leaf Departments: ', res);
             startNav();
         })
 };
 
-// view all roles in db 
-function viewRoles() {
+//view rolles
+function seeRoles() {
     db.query("SELECT * FROM roles",
         function (err, res) {
             if (err) throw err;
-            console.table('Roles: ', res);
+            console.table('Golden Leaf Roles: ', res);
             startNav();
+        })
+};
+
+//view employees
+function seeEm() {
+    db.query("SELECT * FROM employee",
+        function (err, res) {
+            if (err) throw err;
+            console.table('Golden Leaf Employees: ', res);
+            startNav();
+        })
+};
+
+//add department
+function addDepart() {
+    inquirer
+        .prompt([{
+            name: "addDepart",
+            type: "input",
+            message: "What is the name of the new department?"
+        }]).then(function (answer) {
+            db.query(`INSERT INTO department (department_name) VALUES ('${answer.addDepart}')`,
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(answer.addDepart + " was added to the department list.");
+                    startNav();
+                })
+        })
+};
+
+//add new role
+function addRole() {
+    inquirer
+        .prompt([{
+                name: "addRole",
+                type: "input",
+                message: "What is the new role called?"
+            },
+            {
+                name: "addSal",
+                type: "input",
+                message: "What is the yearly salary for this role?"
+            },
+            {
+                name: "addDept",
+                type: "input",
+                message: "What is the department ID for this role?"
+            }
+        ]).then(function (answer) {
+            db.query(`INSERT INTO roles (title, salary, department_id) Values ('${answer.addRole}', '${answer.addSal}', '${answer.addDept}')`,
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(answer.addRole + " was added to the list of job roles, and has a yearly salary of " + answer.addSal + ".");
+                    startNav();
+                })
         })
 };
 
