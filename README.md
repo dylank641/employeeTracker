@@ -9,7 +9,7 @@ Next you'll want to make sure you seed the source the db files
 Then simply run 'npm start' in the terminal
 
 ## Walkthrough Video
-[1]:https://drive.google.com/file/d/1UUKRXelL_v92EkYfPUZt0DeWODLOGZ2W/view "Check it out"
+[yo](https://drive.google.com/file/d/1UUKRXelL_v92EkYfPUZt0DeWODLOGZ2W/view)
 
 ## Contribution 
 Made with ❤️ by James Killelea
