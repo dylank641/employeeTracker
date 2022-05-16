@@ -64,3 +64,23 @@ function startNav() {
         })
 };
 
+// view all departments in db
+function viewDepartments() {
+    db.query("SELECT * FROM department",
+        function (err, res) {
+            if (err) throw err;
+            console.table('Departments: ', res);
+            startNav();
+        })
+};
+
+// view all roles in db 
+function viewRoles() {
+    db.query("SELECT * FROM roles",
+        function (err, res) {
+            if (err) throw err;
+            console.table('Roles: ', res);
+            startNav();
+        })
+};
+
