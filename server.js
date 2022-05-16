@@ -139,3 +139,39 @@ function addRole() {
         })
 };
 
+//add emplyoyee
+function addEm() {
+    inquirer
+        .prompt([{
+                name: 'firstName',
+                type: 'input',
+                message: "What is the new employees first name?"
+            },
+            {
+                name: 'lastName',
+                type: 'input',
+                message: "What is the new employees last name?"
+            },
+            {
+                name: 'roleId',
+                type: 'input',
+                message: "What is the employee's role? 1. SEO 2. Finance 3. Shipping 4. CustomerService",
+                choices: ["1", "2", "3", "4"]
+            },
+            {
+                name: 'managerId',
+                type: 'input',
+                message: "What is the manager role id? 1. SEO Manager 2. Finance Manager 3. Shipping Manager 4. CustomerService Manager",
+                choices: ["1", "2", "3", "4"]
+            },
+        ]).then(function (answer) {
+            db.query(`INSERT INTO employee (last_name, first_name, role_id, manager_id) VALUES ('${answer.firstName}', '${answer.lastName}', '${answer.roleId}', '${answer.managerId}')`,
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(answer.firstName + " " + answer.lastName + " has been added to the list of empoloyee's.");
+                    startNav();
+                })
+        })
+};
+
+
