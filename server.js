@@ -25,36 +25,36 @@ function startNav() {
             type: 'list',
             message: 'Golden Leaf Database *** Select an option.',
             choices: [
-                'View all departments',
-                'View all roles',
-                'View all employees',
-                'Add a department',
-                'Add a role',
-                'Add an employee',
-                'Update an employee role',
+                'View all Departments',
+                'View all Roles',
+                'View all Employees',
+                'Add a Department',
+                'Add a Role',
+                'Add an Employee',
+                'Update an Employee Role',
                 'Exit'
             ],
         }).then(answers => {
             switch ('Answer: ', answers.nav) {
-                case 'View all departments':
+                case 'View all Departments':
                     seeDepart();
                     break;
-                case 'View all roles':
+                case 'View all Roles':
                     seeRoles();
                     break;
-                case 'View all employees':
+                case 'View all Employees':
                     seeEm();
                     break;
-                case 'Add a department':
+                case 'Add a Department':
                     addDepart();
                     break;
-                case 'Add a role':
+                case 'Add a Role':
                     addRole();
                     break;
-                case 'Add an employee':
+                case 'Add an Employee':
                     addEm();
                     break;
-                case 'Update an employee role':
+                case 'Update an Employee Role':
                     updateEmRole();
                     break;
                 case 'Exit':
