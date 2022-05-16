@@ -174,4 +174,34 @@ function addEm() {
         })
 };
 
+//update employee role
+function updateEmRole() {
+    inquirer
+        .prompt([{
+                name: "changeRole",
+                type: "input",
+                message: "Please provide the ID of the employee you are trying to update.",
+            },
+            {
+                name: "newRole",
+                type: "input",
+                message: "What is the employee's new role? 1. SEO 2. Finance 3. Shipping 4. CustomerService",
+                choices: ["1", "2", "3", "4"]
+            }
+        ]).then(function (answer) {
+            const changeRole = answer.changeRole;
+            const newRole = answer.newRole;
+            const roleUpdate = `UPDATE employee SET role_id = "${newRole}" WHERE id = "${changeRole}"`;
+            db.query(roleUpdate, function (err, res) {
+                if (err) throw err;
+                console.table(answer);
+                startNav();
+            })
+        })
+};
 
+
+function quit() {
+    console.log("Exiting Golden Leaf Employee Database");
+    db.end();
+};
