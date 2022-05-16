@@ -1,23 +1,24 @@
-SELECT * FROM department;
-SELECT * FROM roles;
-SELECT * FROM employees;
+INSERT INTO department (department_name)
+VALUES ("Sales"),
+       ("Finance"),
+       ("Marketing"),
+       ("Growers");
 
-INSERT INTO department
-(name)
-VALUES ('Marketing'),('Customer-Service'),('Financial'),('Packaging');
+INSERT INTO roles (title, salary, department_id)
+VALUES ("Cashier", 15000.00, 1),
+       ("Accountant", 20000.00, 2),
+       ("Lead Marketing Director", 25000.00, 3),
+       ("Grassroots Marketer", 22000.00, 3),
+       ("Tomato Grower", 18000.00, 4),
+       ("Cucumber Grower", 17500.00, 4),
+       ("Spinach Grower", 16750.00, 4);
 
-INSERT INTO roles
-        (title, salary, department_id)
-        VALUES
-        ('Ad-Specialist', 80000, 100),
-        ('Customer-Service-Rep', 45000, 200),
-        ('Accountant', 70000, 300),
-        ('Packaging Rep', 35000, 400);
-
-INSERT INTO employees
-        (first_name, last_name, role_id, manager_id)
-        VALUES
-         ('Cesar', 'Perez', 301, 487),
-         ('Daniel', 'Branca', 405, 628),
-         ('Pedro', 'Allday', 108, 348),
-         ('Jose', 'Medina', 265, 135);
+INSERT INTO employee (last_name, first_name, role_id, manager_id)
+VALUES ("Smith", "John", 1, NULL),
+       ("Jones", "Amy", 2, NULL),
+       ("Avery", "Lucas", 3, NULL ),
+       ("Henderson", "Mel", 4, 3),
+       ("West", "Ron", 5, NULL),
+       ("Henry", "Adam", 5, 5),
+       ("Voight", "Wanda", 6, 5),
+       ("Cobb", "Mary", 7, 5);
