@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS v;
+DROP DATABASE IF EXISTS goldenLeaf_db;
 CREATE DATABASE goldenLeaf_db;
 
 USE goldenLeaf_db;
